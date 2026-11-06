@@ -1,0 +1,10 @@
+Track,Algorithm,Quantum_Queries,Classical_Queries,Success_Rate_%,Runtime_ms,Notes
+I,Deutsch-Jozsa (Constant vs Balanced),1,2^(n-1) + 1 = 5,100.0,0.35200011916458607,Distinguished constant and balanced in 1 query
+I,Bernstein-Vazirani,1,n = 3,99.99999999999989,0.10930001735687256,Recovered secret 5 (0b101) in 1 query
+I,Grover Search (N=8 items),2,N/2 = 4 avg,94.53124999999993,0.06079999729990959,Located marked item 3 in 2 iterations (94.5% prob)
+I,Quantum Fourier Transform (QFT),O(n^2) = 9 gates,O(n 2^n) = 24 ops,100.0,0.09269989095628262,Exact Fourier phase state computed
+I,Quantum Phase Estimation (QPE),3 controlled-U,N/A,99.99999999999973,0.05530007183551788,Estimated phase 0.3750 (True: 0.375)
+I,"Shor Period Finding (a=7, N=15)",Polynomial in log(N),Sub-exponential,100.0,0.003700144588947296,"Found order r=4 => factors (7^2 - 1)=48 => gcd(48, 15)=3, 5"
+I,Quantum Annealing (Adiabatic Ising),40 adiabatic steps,Heuristic,39.59425591451004,0.7436000742018223,Converged to ground state |3> with energy 1.0
+I,QML: Variational Quantum Classifier (VQC),9020,N/A,100.0,435.1005998905748,"Accuracy: 100.0%, 4 quantum angles, 9020 circuits"
+I,Classical: Logistic Regression,N/A,1000,100.0,0.9511001408100128,"Accuracy: 100.0%, 3 weights, 1000 dot products"
