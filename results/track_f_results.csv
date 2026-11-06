@@ -1,0 +1,5 @@
+Track,Pipeline_Stage,Instruction_Count,Execution_Cycles,Code_Size_Lines,Compile_Time_ms,Execution_Time_ms,Return_Value,Correctness
+F,Unoptimized Baseline,24,90,24,0.0,0.04630000330507755,264,PASS
+F,4-Pass Optimized (Fold+CSE+Strength+DCE),11,77,11,0.08750008419156075,0.02529984340071678,264,PASS
+F,Register Allocation (Greedy Welsh-Powell),3,77,11,0.0754999928176403,0.02529984340071678,264,PASS
+F,Register Allocation (0-1 ILP Branch & Bound),3,77,11,0.07779989391565323,0.02529984340071678,264,PASS
