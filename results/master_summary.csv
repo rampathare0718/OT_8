@@ -1,0 +1,11 @@
+Track,Domain,Status,Runtime_s
+Track A,Continuous Optimization,PASSED,0.8147024000063539
+Track B,Discrete Optimization & QUBO,PASSED,0.05896780011244118
+Track C,Quantum Optimization (QAOA/VQE),PASSED,0.6972485000733286
+Track D,Submodular & Parallel Scaling,PASSED,0.19128470006398857
+Track E,BESS Smart Grid Dispatch,PASSED,0.868468000087887
+Track F,Mini-Compiler Passes & Reg Alloc,PASSED,0.0026749998796731234
+Track G,xv6 Kernel MLFQ Scheduler,PASSED,0.16145929996855557
+Track H,TPC-H Query & Index Knapsack,PASSED,0.45126490015536547
+Track I,Quantum Zoo & QML vs Classical,PASSED,0.6026109999511391
+Track J,Test Suite Minimization (TSMP),PASSED,0.1715023999568075
