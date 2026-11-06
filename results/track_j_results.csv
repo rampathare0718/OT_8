@@ -1,0 +1,4 @@
+Track,Strategy,Test_Count,Execution_Time_ms,Time_Saved_%,Coverage_Functions,Coverage_%,APFD_Fault_Metric,Solver_Runtime_ms
+J,Baseline Full Test Suite,37,2143.0,0.0,60,100.0,0.7162162162162161,0.0
+J,Greedy Additional Coverage (50% Budget),25,1006.0,53.056462902473164,60,100.0,0.4,0.21050008945167065
+J,0-1 ILP Set Cover (50% Budget),16,478.0,77.6948203453103,56,93.33333333333333,0.44791666666666663,0.09640003554522991
