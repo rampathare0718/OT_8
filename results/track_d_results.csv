@@ -1,0 +1,12 @@
+Track,Subsystem,Method,Objective_Value,Optimal_Baseline,Ratio_Achieved,Theoretical_Lower_Bound,Runtime_ms
+D,Submodular Sensor Coverage,Greedy (Nemhauser),119.29220053191658,119.54529606633201,0.9978828482362451,0.6321205588285577,0.2921000123023987
+D,Submodular Sensor Coverage,Exact Brute Force,119.54529606633201,119.54529606633201,1.0,0.6321205588285577,0.9500000160187483
+D,Parallel Task Scheduling,Work Stealing (1 cores),3.349636542294978,1.0,1.0,0.0,3349.636542294978
+D,Parallel Task Scheduling,Work Stealing (2 cores),1.8516162663889173,1.8090338711635694,0.9045169355817847,0.0,1851.6162663889172
+D,Parallel Task Scheduling,Work Stealing (4 cores),0.9845871756453797,3.402072081732478,0.8505180204331195,0.0,984.5871756453797
+D,Parallel Task Scheduling,Work Stealing (8 cores),0.5193438125471973,6.449747664973995,0.8062184581217494,0.0,519.3438125471973
+D,Federated Learning,Centralized SGD,2.314877775128231,0.0,2.314877775128231,0.0,15.0
+D,Federated Learning,FedAvg (Local E=5),2.3107825096354695,2.314877775128231,0.99823046220097,0.0,12.0
+D,Multi-Task Optimization,Equal Weighting (L1 + L2),4.053284762983006,4.0,1.0,4.0,2.1
+D,Multi-Task Optimization,MGDA (Frank-Wolfe Pareto),4.053284762983006,4.0,1.0,4.0,3.4
+D,Multi-Task Optimization,GradNorm Dynamic,4.000295126654306,4.0,1.0,4.0,3.8
