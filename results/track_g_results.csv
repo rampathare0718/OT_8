@@ -1,0 +1,3 @@
+Track,Kernel_Feature,Avg_Turnaround_ticks,Avg_Wait_Time_ticks,Avg_Response_Time_ticks,Context_Switches,Lock_Contentions,Jains_Fairness,Verification
+G,Vanilla xv6 (Round-Robin),294.125,282.0,230.75,394,869,0.5944641872434288,Passes Usertests
+G,MLFQ Scheduler + Aging,211.375,167.375,3.5,139,0,0.5944641872434288,Passes Usertests

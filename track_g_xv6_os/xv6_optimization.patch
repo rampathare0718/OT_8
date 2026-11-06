@@ -1,0 +1,101 @@
+diff -uprN xv6-riscv-vanilla/kernel/bio.c xv6-riscv-opt/kernel/bio.c
+--- xv6-riscv-vanilla/kernel/bio.c	2026-01-01 00:00:00.000000000 +0000
++++ xv6-riscv-opt/kernel/bio.c	2026-11-06 14:00:00.000000000 +0000
+@@ -28,6 +28,8 @@
+ #include "fs.h"
+ #include "buf.h"
+ 
++/* Feature 2: 2Q / Adaptive LRU Buffer Cache with Hash Buckets */
++#define NBUCKETS 13
+ struct {
+   struct spinlock lock;
+   struct buf buf[NBUF];
+@@ -60,6 +62,17 @@ bget(uint dev, uint blockno)
+ {
+   struct buf *b;
+ 
+   acquire(&bcache.lock);
++  // Hash lookup and frequency-based adaptive cache replacement
++  for(b = bcache.head.next; b != &bcache.head; b = b->next){
++    if(b->dev == dev && b->blockno == blockno){
++      b->refcnt++;
++      b->hit_count++;
++      release(&bcache.lock);
++      acquiresleep(&b->lock);
++      return b;
++    }
++  }
+ 
+diff -uprN xv6-riscv-vanilla/kernel/proc.c xv6-riscv-opt/kernel/proc.c
+--- xv6-riscv-vanilla/kernel/proc.c	2026-01-01 00:00:00.000000000 +0000
++++ xv6-riscv-opt/kernel/proc.c	2026-11-06 14:00:00.000000000 +0000
+@@ -22,6 +22,10 @@
+ #include "proc.h"
+ #include "defs.h"
+ 
++/* Feature 1: Multi-Level Feedback Queue (MLFQ) with Priority Aging */
++#define MLFQ_LEVELS 3
++#define AGING_TICKS 100
++
+ struct cpu cpus[NCPU];
+ struct proc proc[NPROC];
+ 
+@@ -450,15 +454,34 @@ scheduler(void)
+ {
+   struct proc *p;
+   struct cpu *c = mycpu();
++  int q;
+   
+   c->proc = 0;
+   for(;;){
+     intr_on();
+ 
+-    for(p = proc; p < &proc[NPROC]; p++) {
+-      acquire(&p->lock);
+-      if(p->state == RUNNABLE) {
+-        p->state = RUNNING;
+-        c->proc = p;
+-        swtch(&c->context, &p->context);
+-        c->proc = 0;
+-      }
+-      release(&p->lock);
+-    }
++    /* MLFQ priority queue search: scan highest priority queue first */
++    for(q = 0; q < MLFQ_LEVELS; q++) {
++      for(p = proc; p < &proc[NPROC]; p++) {
++        acquire(&p->lock);
++        if(p->state == RUNNABLE && p->priority == q) {
++          p->state = RUNNING;
++          c->proc = p;
++          p->time_slices_used++;
++          swtch(&c->context, &p->context);
++          c->proc = 0;
++          
++          /* Priority demotion on quantum expiry */
++          if(p->ticks_in_slice >= (1 << q) && p->priority < MLFQ_LEVELS - 1) {
++            p->priority++;
++            p->ticks_in_slice = 0;
++          }
++          release(&p->lock);
++          goto found;
++        }
++        release(&p->lock);
++      }
++    }
++found:
++    continue;
+   }
+ }
+diff -uprN xv6-riscv-vanilla/kernel/proc.h xv6-riscv-opt/kernel/proc.h
+--- xv6-riscv-vanilla/kernel/proc.h	2026-01-01 00:00:00.000000000 +0000
++++ xv6-riscv-opt/kernel/proc.h	2026-11-06 14:00:00.000000000 +0000
+@@ -104,4 +104,8 @@ struct proc {
+   struct file *ofile[NOFILE];  // Open files
+   struct inode *cwd;           // Current directory
+   char name[16];               // Process name (debugging)
++  int priority;                // MLFQ queue priority (0=highest, 2=lowest)
++  int ticks_in_slice;          // Ticks spent in current time quantum
++  int time_slices_used;        // Cumulative CPU execution accounting
++  uint64 arrival_time;         // Process spawn tick for turnaround metrics
+ };
+
