@@ -1,0 +1,7 @@
+Track,Problem,Solver,Objective_Value,Feasible,Runtime_ms,Optimality_Gap_%
+B,"0/1 Knapsack (N=10, C=100)",Greedy (Value/Weight),280.0,True,0.07500010542571545,1.7543859649122806
+B,"0/1 Knapsack (N=10, C=100)",Dynamic Programming,285.0,True,0.34360005520284176,0.0
+B,"0/1 Knapsack (N=10, C=100)",Branch-and-Bound (50 nodes),285.0,True,0.09600003249943256,0.0
+B,Max-Cut QUBO (5-node graph),Exact Brute Force,4.0,True,0.10030018165707588,0.0
+B,Max-Cut QUBO (5-node graph),Simulated Annealing,4.0,True,45.408899895846844,0.0
+B,Max-Cut QUBO (5-node graph),Tabu Search,4.0,True,8.012500125914812,0.0
