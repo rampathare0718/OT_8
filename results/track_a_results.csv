@@ -1,0 +1,15 @@
+Track,Landscape,Optimizer,Iterations,Final_Objective,Runtime_ms,Status
+A,Strongly Convex Quadratic,GD (lr=0.05),80,-0.08905644179038452,0.3329000901430845,Converged
+A,Strongly Convex Quadratic,"Momentum (lr=0.05, beta=0.8)",80,0.000519547619938221,0.48399996012449265,Progressing
+A,Strongly Convex Quadratic,"NAG (lr=0.05, beta=0.8)",80,9.766665603128111e-05,0.47319987788796425,Converged
+A,Strongly Convex Quadratic,AdaGrad (lr=0.5),80,-0.3916808444738944,0.44359988532960415,Converged
+A,Strongly Convex Quadratic,RMSProp (lr=0.1),80,-0.004118195310458539,0.5053998902440071,Converged
+A,Strongly Convex Quadratic,Adam (lr=0.2),80,0.16045545030102204,0.7327001076191664,Progressing
+A,Strongly Convex Quadratic,Newton-Raphson,2,-5.678771430872587e-08,0.09019998833537102,Converged
+A,Non-Convex Rosenbrock,GD (lr=0.001),200,3.462227009381844,0.6889000069350004,In Valley
+A,Non-Convex Rosenbrock,"Momentum (lr=0.001, beta=0.9)",200,0.03519105730902542,0.8463999256491661,Converged
+A,Non-Convex Rosenbrock,"NAG (lr=0.001, beta=0.9)",200,0.053986151227777286,0.9829998016357422,Converged
+A,Non-Convex Rosenbrock,RMSProp (lr=0.01),200,1.8796349520290432,1.2211999855935574,In Valley
+A,Non-Convex Rosenbrock,Adam (lr=0.05),200,2.5876017395456143,1.7192999366670847,In Valley
+A,Non-Convex Rosenbrock,Newton-Raphson,50,2.930813802442118e-15,1.1487000156193972,Converged
+A,SmallMLP Backpropagation (Loss & L2),Adam (lr=0.03),150,0.012536893924872833,4.262600094079971,Converged
